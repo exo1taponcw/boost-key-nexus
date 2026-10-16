@@ -16,7 +16,7 @@ function parseInvite(input: string): { invite?: string; guildId?: string } {
   const v = input.trim();
   if (/^\d{17,20}$/.test(v)) return { guildId: v };
   const m = v.match(/(?:discord(?:app)?\.(?:gg|com\/invite)\/)?([A-Za-z0-9-]{2,32})$/);
-  return m ? { invite: m[1] } : {};
+  return m && m[1] ? { invite: m[1] } : {};
 }
 
 export const resolveGuild = createServerFn({ method: "POST" })

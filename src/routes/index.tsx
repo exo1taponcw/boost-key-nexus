@@ -196,7 +196,7 @@ function Index() {
           </StepCard>
 
           <motion.button
-            whileHover={ready ? { scale: 1.02 } : undefined} whileTap={ready ? { scale: 0.98 } : undefined} transition={spring}
+            whileHover={{ scale: ready ? 1.02 : 1 }} whileTap={{ scale: ready ? 0.98 : 1 }} transition={spring}
             disabled={!ready || stock?.[keyState.tier ?? "1m"] === 0}
             onClick={() => setModal(true)}
             className="shimmer relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-aurora py-4 font-display text-lg font-bold text-primary-foreground shadow-glow transition disabled:cursor-not-allowed disabled:opacity-40"

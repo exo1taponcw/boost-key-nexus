@@ -73,7 +73,7 @@ function AuthForm() {
       ? await supabase.auth.signInWithPassword({ email, password })
       : await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${window.location.origin}/admin` } });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (mode === "up" && !data.session) toast.success("Check your email to confirm your account");
   };
   return (
@@ -185,7 +185,7 @@ function Keys() {
   const generate = async () => {
     const codes = Array.from({ length: count }, genCode);
     const { error } = await supabase.from("license_keys").insert(codes.map((code) => ({ code, tier })));
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setFresh(codes); toast.success(`Generated ${count} ${tierLabel[tier]} keys`); load();
   };
   const copy = (t: string) => { navigator.clipboard.writeText(t); toast.success("Copied"); };
